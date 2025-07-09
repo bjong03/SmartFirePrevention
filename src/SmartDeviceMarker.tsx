@@ -17,9 +17,9 @@ export class SmartDeviceMarker extends Marker {
 
     // Move all the code from the challenge into the new class
     this.title = smartDeviceId;
-    this.setImageUrl("./fire.svg");
-    this.label = smartDeviceType;
-    this.labelOffset = { x: 0, y: 30 };
-    this.labelColor = "black"; // ✅ Add this line to set label text color    
+    this.setImageUrl(`${smartDeviceType}.svg`);
+    //this.label = smartDeviceType;
+    //this.labelOffset = { x: 0, y: 30 };
+    //this.labelColor = "black"; // ✅ Add this line to set label text color    
   }
 }
