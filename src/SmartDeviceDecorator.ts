@@ -1,6 +1,7 @@
 import { DecorateContext, Decorator } from "@itwin/core-frontend";
 import { IModelDataApi, SmartDevice } from "./IModelDataApi";
 import { SmartDeviceMarker } from "./SmartDeviceMarker";
+import { DeviceData, DeviceStatusApi } from "./DeviceStatusApi";
 
 // A fresh Decorator.
 export class SmartDeviceDecorator implements Decorator {
@@ -16,6 +17,10 @@ export class SmartDeviceDecorator implements Decorator {
     // Fetch the data from the iModel
     const devices: SmartDevice[] = await IModelDataApi.getSmartDevices();
 
+    // Fetch the API data using the method we created in ch.5.1!
+    const federatedData: DeviceData = await DeviceStatusApi.getData();
+    console.log(federatedData)
+
     // Create a new marker for each of the devices
     devices.forEach((device) => {
 
@@ -24,6 +29,7 @@ export class SmartDeviceDecorator implements Decorator {
         { x: 40, y: 40 },
         device.smartDeviceId,
         device.smartDeviceType,
+        federatedData[device.smartDeviceId],
       );
       // We moved a whole 4 lines of code to a new home!
 
