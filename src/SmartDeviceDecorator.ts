@@ -1,47 +1,40 @@
-import { DecorateContext, Decorator, Marker } from "@itwin/core-frontend";
+import { DecorateContext, Decorator } from "@itwin/core-frontend";
 import { IModelDataApi, SmartDevice } from "./IModelDataApi";
+import { SmartDeviceMarker } from "./SmartDeviceMarker";
 
 // A fresh Decorator.
 export class SmartDeviceDecorator implements Decorator {
-    private _markers: Marker[];
+  private _markers: SmartDeviceMarker[];
 
-    constructor() {
-        // Initialize the markers
-        this._markers = [];
-        this.addMarkers();
-    }
+  constructor() {
+    // Initialize the markers
+    this._markers = [];
+    this.addMarkers();
+  }
 
-    private async addMarkers() {
-        // Fetch the data from the iModel
-        const devices: SmartDevice[] = await IModelDataApi.getSmartDevices();
+  private async addMarkers() {
+    // Fetch the data from the iModel
+    const devices: SmartDevice[] = await IModelDataApi.getSmartDevices();
 
-        // Debug: Print device IDs to console
-        console.log("Fetched Smart Devices:", devices.map((d) => d.smartDeviceId));
+    // Create a new marker for each of the devices
+    devices.forEach((device) => {
 
-        // Create a new marker for each of the devices
-        devices.forEach((device) => {
-            const marker = new Marker(
-                { x: device.origin.x, y: device.origin.y, z: device.origin.z },
-                { x: 50, y: 50 },
-            );
-            marker.label = device.smartDeviceId;
+      const marker = new SmartDeviceMarker(
+        { x: device.origin.x, y: device.origin.y, z: device.origin.z },
+        { x: 40, y: 40 },
+        device.smartDeviceId,
+        device.smartDeviceType,
+      );
+      // We moved a whole 4 lines of code to a new home!
 
-            // Set text (label) color to black
-            marker.labelColor = "black";
+      this._markers.push(marker) // within the devices array loop.
+    });
+  }
+  public decorate(context: DecorateContext): void {
+    /*  This is where we draw! */
 
-            // Optional: set font if desired
-            marker.labelFont = "bold 12px sans-serif";
-            // Store the markers in a class variable
-            this._markers.push(marker);
-        });
-
-        return this._markers;
-    }
-
-    public decorate(context: DecorateContext): void {
-        /*  This is where we draw! */
-        this._markers.forEach(marker => {
-            marker.addDecoration(context);
-        });
-    }
+    this._markers.forEach(marker => {
+      marker.addDecoration(context);
+    });
+  }
 }
