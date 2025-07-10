@@ -25,3 +25,37 @@
 .alert-text {
   color: #c00;
 }
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tab {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #eee;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tab.active {
+  background: #c00;
+  color: white;
+  border-color: #c00;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-line {
+  background-color: #f0f0ff;
+  border: 1px solid #b0b0ff;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
