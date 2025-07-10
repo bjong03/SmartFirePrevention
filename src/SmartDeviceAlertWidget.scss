@@ -1,0 +1,27 @@
+.smart-alert-widget {
+  padding: 12px;
+  font-family: sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-line {
+  display: flex;
+  align-items: center;
+  background-color: #fff3f3;
+  border: 1px solid #ffa8a8;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.alert-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.alert-text {
+  color: #c00;
+}

@@ -48,6 +48,7 @@ import { DeviceStatusApi } from "./DeviceStatusApi";
 
 //Decorators
 import { SmartDeviceDecorator } from "./SmartDeviceDecorator"
+import { SmartDeviceListWidgetProvider } from "./SmartDeviceListWidgetProvider";
 
 const App: React.FC = () => {
   const [iModelId, setIModelId] = useState(process.env.IMJS_IMODEL_ID);
@@ -169,7 +170,9 @@ const App: React.FC = () => {
         enablePerformanceMonitors={true} // see description in the README (https://www.npmjs.com/package/@itwin/web-viewer-react)
         onIModelAppInit={onIModelAppInit}
         onIModelConnected={onIModelConnected}
-        uiProviders={[]}
+        uiProviders={[
+          new SmartDeviceListWidgetProvider(), // Instantiating the provider!
+        ]}
       />
     </div>
   );
