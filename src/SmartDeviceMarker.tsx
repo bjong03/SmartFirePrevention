@@ -15,7 +15,7 @@ export class SmartDeviceMarker extends Marker {
     // Call base class constructor
     super(location, size);
 
-    this.setImageUrl(`${smartDeviceType}.svg`);
+    this.setImageUrl(`${smartDeviceType}.png`);
     this.title = this.populateTitle(smartDeviceId, federatedData);
     //this.label = smartDeviceType;
     //this.labelOffset = { x: 0, y: 30 };

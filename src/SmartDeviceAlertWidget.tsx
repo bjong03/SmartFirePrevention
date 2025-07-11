@@ -64,7 +64,7 @@ export const SmartDeviceAlertWidget = () => {
         fireAlerts.map((alert) => (
           <div key={alert.deviceId} className="alert-line">
             <img
-              src="smokedetector.svg"
+              src="flammable.png"
               alt="Smoke Detector"
               className="alert-icon"
             />
